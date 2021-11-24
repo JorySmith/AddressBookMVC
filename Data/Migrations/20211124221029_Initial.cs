@@ -21,8 +21,8 @@ namespace AddressBookMVC.Data.Migrations
                     City = table.Column<string>(type: "text", nullable: true),
                     State = table.Column<string>(type: "text", nullable: true),
                     Zip = table.Column<int>(type: "integer", nullable: false),
-                    Email = table.Column<int>(type: "integer", nullable: false),
-                    Phone = table.Column<int>(type: "integer", nullable: false),
+                    Email = table.Column<string>(type: "text", nullable: true),
+                    Phone = table.Column<string>(type: "text", nullable: true),
                     Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ImageData = table.Column<byte[]>(type: "bytea", nullable: true),
                     ImageType = table.Column<string>(type: "text", nullable: true)

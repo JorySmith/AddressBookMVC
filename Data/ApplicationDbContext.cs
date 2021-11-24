@@ -11,9 +11,8 @@ namespace AddressBookMVC.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
+        // Create a DBSet of Contact to migrate tables to the DB
         public DbSet<Contact> Contacts { get; set; }
-
-
 
     }      
 }

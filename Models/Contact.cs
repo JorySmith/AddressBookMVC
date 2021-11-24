@@ -26,9 +26,9 @@ namespace AddressBookMVC.Models
         public int Zip { get; set; }
 
         [DataType(DataType.EmailAddress)]
-        public int Email { get; set; }
+        public string Email { get; set; }
         [DataType(DataType.PhoneNumber)]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         public DateTime Created { get; set; }
 
         [NotMapped] // Don't map this property to a DB
