@@ -33,6 +33,7 @@ namespace AddressBookMVC.Models
 
         [NotMapped] // Don't map this property to a DB
         [Display(Name = "Image")]
+        [DataType(DataType.Upload)]
         public IFormFile ImageFile { get; set; }
         public byte[] ImageData { get; set; } // Digital bite array representation of the image test
         public string ImageType { get; set; }
