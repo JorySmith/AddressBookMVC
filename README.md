@@ -1,4 +1,4 @@
-# Address Book Web Application
+# Address Book CRUD Application
 A full stack Address Book web app built with C# ASP.NET MVC and PostgreSQL.
 
 # Features
