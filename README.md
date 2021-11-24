@@ -1,5 +1,5 @@
-# AddressBookMVC
-A full stack Address Book web app built with C# ASP.NET MVC 
+# Address Book Web Application
+A full stack Address Book web app built with C# ASP.NET MVC.
 
 # Features
 - Create, read, update, delete (CRUD) funcitonality
