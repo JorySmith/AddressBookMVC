@@ -29,9 +29,9 @@ namespace AddressBookMVC
         public void ConfigureServices(IServiceCollection services)
         {
             // Add DB context service for connecting to the DB with a
-            // default connection string
+            // connection string depending on if working locally or on heroku
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(DataUtility.GetConnectionString(Configuration)));
 
             // Add a scoped service, the same within the request, but
             // different among different requests
