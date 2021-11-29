@@ -10,3 +10,4 @@ A full stack Address Book web app built with C# ASP.NET MVC and PostgreSQL.
 - Data searching, filtering/sorting, and pagination with Datatables.net CDN
 - Back end form validation
 - Deployment to Heroku
+- Continuous integration and deployment
