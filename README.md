@@ -2,7 +2,7 @@
 A full stack Address Book web app built with C# ASP.NET MVC and PostgreSQL.
 
 # Features
-- Create, read, update, delete (CRUD) functionality
+- Create, read, update, and delete (CRUD) 
 - Object oriented programming (OOP) with C#
 - PostgreSQL database integration
 - ASP.NET Entity Framework
