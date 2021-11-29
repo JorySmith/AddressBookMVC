@@ -7,16 +7,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AddressBookMVC.Data;
 using AddressBookMVC.Models;
+using AddressBookMVC.Services.Interfaces;
 
 namespace AddressBookMVC.Controllers
 {
     public class ContactsController : Controller
     {
+        // Scaffolding added ApplicationDbContext service to access DB
         private readonly ApplicationDbContext _context;
 
-        public ContactsController(ApplicationDbContext context)
+        // Add IImageServce service, right-click _imageService, "add parameters")
+        private readonly IImageService _imageService;
+
+        public ContactsController(ApplicationDbContext context, IImageService imageService)
         {
             _context = context;
+            _imageService = imageService;
         }
 
         // GET: Contacts
@@ -54,10 +60,21 @@ namespace AddressBookMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FirstName,LastName,Address1,Address2,City,State,Zip,Email,Phone,Created,ImageData,ImageType,Id")] Contact contact)
+        // Ensure ImageFile is added to Bind string or it won't get pushed to DB
+        public async Task<IActionResult> Create([Bind("FirstName,LastName,Address1,Address2,City,State,Zip,Email,Phone,Created,ImageData,ImageType,ImageFile,Id")] Contact contact)
         {
             if (ModelState.IsValid)
             {
+                // Check if the user submitted an imageFile
+                if (contact.ImageFile != null)
+                {
+                    // Take imageFile input and await result of ConvertFileToByteArrayAsync
+                    // Update contact.ImageData and .ImageType
+                    contact.ImageData = await _imageService.ConvertFileToByteArrayAsync(contact.ImageFile);
+                    contact.ImageType = contact.ImageFile.ContentType;
+                }
+
+                // Store new contact to DB _context
                 _context.Add(contact);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

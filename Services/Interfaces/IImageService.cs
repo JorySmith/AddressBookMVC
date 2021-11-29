@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AddressBookMVC.Services.Interfaces
 {
-    interface IImageService
+    public interface IImageService
     {
         // An interface is a contract with a set of default methods that must be
         // performed by class members but class members determine how to impliment the methods 

@@ -35,7 +35,8 @@ namespace AddressBookMVC.Models
         [Display(Name = "Image")]
         [DataType(DataType.Upload)]
         public IFormFile ImageFile { get; set; }
-        public byte[] ImageData { get; set; } // Digital bite array representation of the image test
+        // Digital bite array representation of the image 
+        public byte[] ImageData { get; set; } 
         public string ImageType { get; set; }
 
         public int Id { get; set; }
