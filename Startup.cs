@@ -1,4 +1,6 @@
 using AddressBookMVC.Data;
+using AddressBookMVC.Services;
+using AddressBookMVC.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -22,17 +24,24 @@ namespace AddressBookMVC
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // This method gets called by the runtime. Use this method to
+        // add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add the service DB context for connecting to the DB with a default connection string
+            // Add DB context service for connecting to the DB with a
+            // default connection string
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
+            // Add a scoped service, the same within the request, but
+            // different among different requests
+            services.AddScoped<IImageService, BasicImageService>();
 
             services.AddControllersWithViews();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // This method gets called by the runtime. Use this method to
+        // configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -42,7 +51,8 @@ namespace AddressBookMVC
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // The default HSTS value is 30 days. You may want to change
+                // this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
